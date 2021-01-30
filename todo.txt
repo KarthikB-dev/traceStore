@@ -1,0 +1,2 @@
+1) Use a shell script to run the input script, then compile and run
+every java program
