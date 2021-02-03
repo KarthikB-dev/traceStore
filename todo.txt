@@ -1,2 +1,2 @@
-1) Use a shell script to run the input script, then compile and run
-every java program
+1) Implement input validation for the domain name.
+2) Store the hops in some sort of data structure or object.
