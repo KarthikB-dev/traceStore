@@ -7,14 +7,7 @@ inputCommand = "sh " + input_script_path
 runDomainInput = os.system(inputCommand)
 runDomainInput
 
-#start reading from the file
-trace_file = open("trace.txt")
-traceroute_info = trace_file.readline()
-print("Traceroute info:", traceroute_info)
-
-hop_list = []
-curr_hop = trace_file.readline()
-
+#defining the hop class that stores information about each hop
 class hop:
     index = 0
     IPs = set()
@@ -23,6 +16,9 @@ class hop:
         self.full_name = full_name
         self.index = index
         self.IPs = IPs
+    #there are no mutators for the hop class since information 
+    #about each hop should not be modified
+    
     #functions to retrieve information about each curr_hop
     def get_index(self):
         return self.index
@@ -30,6 +26,14 @@ class hop:
         return self.IPs
     def get_full_name(self):
         return self.full_name
+
+#start reading from the file
+trace_file = open("trace.txt")
+traceroute_info = trace_file.readline()
+print("Traceroute info:", traceroute_info)
+
+hop_list = []
+curr_hop = trace_file.readline()
 
 def getIPs(hop):
     #IPs stores all IP addresses within a hop, and removes duplicates
