@@ -11,29 +11,36 @@ trace_file = open("trace.txt")
 destination_info = trace_file.readline()
 print("Desination info:", destination_info)
 
-curr_hops = []
+hop_list = []
 curr_hop = trace_file.readline()
 
 class hop:
     index = 0
     IPs = set()
     full_name = ""
-    def __init__(self, index, IPs, full_name):
+    def __init__(self, full_name, index, IPs):
+        self.full_name = full_name
         self.index = index
         self.IPs = IPs
-        self.full_name = full_name
     #functions to retrieve information about each curr_hop
+    def get_index(self):
+        return self.index
+    def get_IPs(self):
+        return self.IPs
+    def get_full_name(self):
+        return self.full_name
 
 def getIPs(hop):
-    return set(re.findall(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", hop))
+    #IPs stores all IP addresses within a hop, and removes duplicates
+    IPs = set(re.findall(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", hop))
+    if len(IPs) == 0:
+        return None
+    return IPs
 
 while curr_hop:
     curr_hop = curr_hop.rstrip('\n')
-    print("curr_Hop:", curr_hop)
-    curr_hops.append(curr_hop)
-    print("IP address:", getIPs(curr_hop))
+    #uses the information in curr_hop to create a new hop object
+    hop_obj = hop(curr_hop, curr_hop[0], getIPs(curr_hop))
+    #add this new hop object to the list of hop objects, hop_list
+    hop_list.append(hop_obj)
     curr_hop = trace_file.readline()
-
-
-
-
