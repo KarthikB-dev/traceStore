@@ -22,3 +22,4 @@ name, the program will simply fail.
 ## What can we expect from traceStore in the future?
 Implementation of geolocation for each hop, and support for different types of ```traceroute```
 commands being executed, like using TCP packets instead of ICMP packets.
+
