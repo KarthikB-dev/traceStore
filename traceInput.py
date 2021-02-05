@@ -29,9 +29,7 @@ class hop:
         out_str += "index: " + self.get_index() + '\n'
         out_str += "IP addresses:" + str(self.get_IPs()) + '\n'
         return out_str
-
         
-
 #start reading from the file
 trace_file = open("trace.txt")
 traceroute_info = trace_file.readline()
