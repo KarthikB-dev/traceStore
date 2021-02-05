@@ -9,9 +9,6 @@ runDomainInput
 
 #defining the hop class that stores information about each hop
 class hop:
-    index = 0
-    IPs = set()
-    full_name = ""
     def __init__(self, full_name, index, IPs):
         self.full_name = full_name
         self.index = index
@@ -26,6 +23,14 @@ class hop:
         return self.IPs
     def get_full_name(self):
         return self.full_name
+    #tostring
+    def __str__(self):
+        out_str = "all info: " + self.get_full_name() + '\n'
+        out_str += "index: " + self.get_index() + '\n'
+        out_str += "IP addresses:" + str(self.get_IPs()) + '\n'
+        return out_str
+
+        
 
 #start reading from the file
 trace_file = open("trace.txt")
@@ -42,10 +47,18 @@ def getIPs(hop):
         return None
     return IPs
 
+def extract_index(hop):
+    if hop[0] != ' ':
+        return hop[0:2]
+    return hop[1]
+
 while curr_hop:
     curr_hop = curr_hop.rstrip('\n')
     #uses the information in curr_hop to create a new hop object
-    hop_obj = hop(curr_hop, curr_hop[0], getIPs(curr_hop))
+    hop_obj = hop(curr_hop, extract_index(curr_hop), getIPs(curr_hop))
     #add this new hop object to the list of hop objects, hop_list
     hop_list.append(hop_obj)
     curr_hop = trace_file.readline()
+
+for hop in hop_list:
+    print(hop)
