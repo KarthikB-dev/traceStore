@@ -1,12 +1,12 @@
 import os
+import subprocess
 import re
 import requests
 
 #replace input_script_path with the path to the shell script on your machine
-input_script_path = "/home/impacable/Documents/traceStore/domain_input.sh"
-inputCommand = "sh " + input_script_path
-runDomainInput = os.system(inputCommand)
-runDomainInput
+domain = input("What's the domain? ")
+traceroute_command = "traceroute " + domain + " > trace.txt"
+os.system(traceroute_command)
 
 #defining the hop class that stores information about each hop
 class hop:
