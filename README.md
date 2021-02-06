@@ -6,7 +6,7 @@ is a list of these hops. The location of each hop is stored in the ```hop_locati
 
 
 ## How do you use traceStore?
-Change the path ```input_script_path``` in the ```traceInput.py``` file so that it matches the file path on your computer. Then, in your terminal, type:
+In your terminal, type:
 
 
 ```python3 traceInput.py```
