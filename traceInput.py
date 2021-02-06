@@ -1,5 +1,6 @@
 import os
 import re
+import requests
 
 #replace input_script_path with the path to the shell script on your machine
 input_script_path = "/home/impacable/Documents/traceStore/domain_input.sh"
@@ -58,5 +59,20 @@ while curr_hop:
     hop_list.append(hop_obj)
     curr_hop = trace_file.readline()
 
+#display the information about each hop
 for hop in hop_list:
     print(hop)
+
+#perform geolocation on the IP addresses of all hops
+hop_locations = []
+#stores information about each IP address in a JSON object
+for hop in hop_list:
+    currLocs = []
+    IPs = hop.get_IPs()
+    if IPs:
+        for IP in IPs:
+            url = 'https://geolocation-db.com/json/' + IP + '&position=true'
+            currLocs.append(requests.get(url).json())
+    hop_locations.append(currLocs)
+
+print(hop_locations)
