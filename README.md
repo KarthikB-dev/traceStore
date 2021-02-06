@@ -24,4 +24,6 @@ name, the program will simply fail.
 ## What can we expect from traceStore in the future?
 Support for different types of ```traceroute```
 commands being executed, like using TCP packets instead of ICMP packets.
+Currently, you only have control over the maximum number of hops that
+can be explored and the domain name.
 
