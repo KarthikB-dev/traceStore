@@ -3,9 +3,27 @@ import subprocess
 import re
 import requests
 
-#replace input_script_path with the path to the shell script on your machine
 domain = input("What's the domain? ")
-traceroute_command = "traceroute " + domain + " > trace.txt"
+
+#TCP scans will be implemented later on
+'''
+tcp = input("Would you like to conduct a TCP based traceroute? y for yes, n for no")
+while tcp != 'y' and tcp != 'n':
+    tcp = input("Please enter a valid answer. y for yes, n for no"
+'''
+
+#setting a maximum number of hops
+diff_num_hops = input("Would you like a number of hops different than the default of 30? y for yes, n for no. ")
+while diff_num_hops != 'y' and diff_num_hops != 'n':
+    diff_num_hops = input("Please enter a valid answer. y for yes, n for no. ")
+max_hops = ""
+if diff_num_hops == 'y':
+    max_hops = input("How many hops would you like to have? Pick a number between 0 and 255. ")
+    while (not max_hops.isnumeric()) or int(max_hops) > 255:
+        max_hops = input("Enter a number between 0 and 255. ")
+    max_hops = "-m " + max_hops + " "
+#performing the traceroute command
+traceroute_command = "traceroute " +  max_hops + domain + " > trace.txt"
 os.system(traceroute_command)
 
 #defining the hop class that stores information about each hop
@@ -74,5 +92,5 @@ for hop in hop_list:
             url = 'https://geolocation-db.com/json/' + IP + '&position=true'
             currLocs.append(requests.get(url).json())
     hop_locations.append(currLocs)
-
+#printing out the contents of all the JSON objects that store locations
 print(hop_locations)
