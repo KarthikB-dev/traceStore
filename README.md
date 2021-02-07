@@ -22,8 +22,8 @@ for the domain name. If you enter an incorrect IP address or domain
 name, the program will simply fail.
 
 ## What can we expect from traceStore in the future?
-Support for different types of ```traceroute```
-commands being executed, like using TCP packets instead of ICMP packets.
-Currently, you only have control over the maximum number of hops that
-can be explored and the domain name.
+Support for more types of ```traceroute```
+commands being executed, instead of just TCP or ICMP.
+Essentially, the traceroute command accepts a variety of arguments,
+and we will give support to more over time.
 
