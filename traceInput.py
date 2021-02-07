@@ -5,12 +5,9 @@ import requests
 
 domain = input("What's the domain? ")
 
-#TCP scans will be implemented later on
-'''
-tcp = input("Would you like to conduct a TCP based traceroute? y for yes, n for no")
+tcp = input("Would you like to conduct a TCP based traceroute? Enter y for yes, n for no. ")
 while tcp != 'y' and tcp != 'n':
-    tcp = input("Please enter a valid answer. y for yes, n for no"
-'''
+    tcp = input("Please enter a valid answer. y for yes, n for no")
 
 #setting a maximum number of hops
 diff_num_hops = input("Would you like a number of hops different than the default of 30? y for yes, n for no. ")
@@ -23,7 +20,10 @@ if diff_num_hops == 'y':
         max_hops = input("Enter a number between 0 and 255. ")
     max_hops = "-m " + max_hops + " "
 #performing the traceroute command
-traceroute_command = "traceroute " +  max_hops + domain + " > trace.txt"
+if tcp == 'n':
+    traceroute_command = "traceroute " +  max_hops + domain + " > trace.txt"
+else:
+    traceroute_command = "sudo traceroute -T " + max_hops + domain + " > trace.txt"
 os.system(traceroute_command)
 
 #defining the hop class that stores information about each hop
