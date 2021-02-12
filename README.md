@@ -26,4 +26,7 @@ Support for more types of ```traceroute```
 commands being executed, instead of just TCP or ICMP.
 Essentially, the traceroute command accepts a variety of arguments,
 and we will give support to more over time.
+A GUI(likely using Tkinter will be added). This could be used
+to specify the IP address/domain name, the type of packets, etc.
+to make it possible to interact with this project without ever opening the command line
 
